@@ -1,28 +1,23 @@
 import Head from "next/head";
 
+import { Button } from "@chakra-ui/core";
+
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Frontenderie - La fabrique à développeurs frontend !</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">La Frontenderie</h1>
         <h2>Fabrique des devs frontend</h2>
+        <h3>Quand ça sera prêt</h3>
+        <Button variantColor="red">Hey le bouton test</Button>
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+      <footer></footer>
 
       <style jsx>{`
         .container {
