@@ -1,9 +1,20 @@
 // import App from 'next/app'
-import { ThemeProvider } from "@chakra-ui/core";
+import { ThemeProvider, theme, CSSReset } from "@chakra-ui/core";
+import "typeface-jetbrains-mono";
+
+const customTheme = {
+  ...theme,
+  fonts: {
+    heading: `"JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    mono: `"JetBrains Mono", SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+  },
+};
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={customTheme}>
+      <CSSReset />
       <Component {...pageProps} />
     </ThemeProvider>
   );

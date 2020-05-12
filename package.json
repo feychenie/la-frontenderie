@@ -16,7 +16,8 @@
     "emotion-theming": "^10.0.27",
     "next": "^9.4.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "typeface-jetbrains-mono": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "^13.13.4",
