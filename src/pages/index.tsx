@@ -1,13 +1,28 @@
 import Head from "next/head";
+import Link from "next/link";
+import { gql, useQuery } from "@apollo/client";
+import { ArticlesHomeQuery } from "db-types";
+const ARTICLES_QUERY = gql`
+  query ArticlesHome {
+    articles(orderBy: publishedAt_DESC) {
+      id
+      title
+      summary
+      author {
+        name
+      }
+    }
+  }
+`;
 
 import {
   Button,
   Flex,
   Box,
-  Link,
   Stack,
   SimpleGrid,
   Heading,
+  Text,
 } from "@chakra-ui/core";
 
 const SectionHeading = ({ children, ...props }) => (
@@ -23,67 +38,38 @@ const Teaser = ({ children, ...props }) => (
 );
 
 export default function Home() {
+  const { data, loading, error } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
   return (
-    <Flex px={8} direction="column" minH="100vh">
-      <Head>
-        <title>Frontenderie - La fabrique à développeurs frontend !</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Flex as="header" py={8}>
-        <Heading
-          as="div"
-          size="lg"
-          textShadow="4px 5px 0px #FFCC005E, -6px 3px 0px #00FFFF85, -3px -3px 0px #FF00F56E;"
-        >
-          La Frontenderie
-        </Heading>
-
-        <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8}>
-          <Link>FAQ</Link>
-          <Link>Vidéos</Link>
-          <Link>Articles</Link>
-          <Link>#NEXT</Link>
+    <SimpleGrid minChildWidth="20rem" spacing={10}>
+      <Stack spacing={8}>
+        <SectionHeading>Articles</SectionHeading>
+        <Stack spacing={4}>
+          {loading && <p>loading</p>}
+          {!loading &&
+            data &&
+            data.articles.map((article) => (
+              <Link href={`/articles/${article.id}`}>
+                <Teaser key={article.id}>
+                  <Heading>{article.title}</Heading>
+                  <Text>{article.summary}</Text>
+                  <Text>By {article.author?.name}</Text>
+                </Teaser>
+              </Link>
+            ))}
         </Stack>
-      </Flex>
-      <SimpleGrid minChildWidth="20rem" spacing={10}>
-        <Stack spacing={8}>
-          <SectionHeading>Articles</SectionHeading>
-          <Stack spacing={4}>
-            <Teaser>Ici il y aura un truc</Teaser>
-          </Stack>
+      </Stack>
+      <Stack spacing={8}>
+        <SectionHeading>Vidéos</SectionHeading>
+        <Stack spacing={4}>
+          <Teaser>Une video ici bientôt</Teaser>
         </Stack>
-        <Stack spacing={8}>
-          <SectionHeading>Vidéos</SectionHeading>
-          <Stack spacing={4}>
-            <Teaser>Une video ici bientôt</Teaser>
-          </Stack>
+      </Stack>
+      <Stack spacing={8}>
+        <SectionHeading>FAQ</SectionHeading>
+        <Stack spacing={4}>
+          <Teaser>Des questions fréquentes arrivent bientôt!</Teaser>
         </Stack>
-        <Stack spacing={8}>
-          <SectionHeading>FAQ</SectionHeading>
-          <Stack spacing={4}>
-            <Teaser>Des questions fréquentes arrivent bientôt!</Teaser>
-          </Stack>
-        </Stack>
-      </SimpleGrid>
-
-      <Box as="footer" mt="auto" py="8">
-        La Frontenderie 2020
-      </Box>
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-            Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-            "Segoe UI Symbol";
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </Flex>
+      </Stack>
+    </SimpleGrid>
   );
 }

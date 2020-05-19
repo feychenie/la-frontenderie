@@ -1,6 +1,23 @@
 // import App from 'next/app'
-import { ThemeProvider, theme, CSSReset } from "@chakra-ui/core";
+import {
+  ThemeProvider,
+  theme,
+  CSSReset,
+  Flex,
+  Heading,
+  Stack,
+  Link,
+  Box,
+} from "@chakra-ui/core";
 import "typeface-jetbrains-mono";
+
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
+import Head from "next/head";
 
 const customTheme = {
   ...theme,
@@ -11,12 +28,76 @@ const customTheme = {
   },
 };
 
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri:
+      "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
+  }),
+});
+
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CSSReset />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={customTheme}>
+        <CSSReset />
+        <Flex px={8} direction="column" minH="100vh">
+          <Head>
+            <title>Frontenderie - La fabrique à développeurs frontend !</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+
+          <Flex as="header" py={8}>
+            <Link href="/">
+              <Heading
+                as="a"
+                size="lg"
+                textShadow="
+                  4px 5px 0px #FFCC005E, 
+                  -6px 3px 0px #00FFFF85, 
+                  -3px -3px 0px #FF00F56E;
+                "
+              >
+                La Frontenderie
+              </Heading>
+            </Link>
+
+            <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8}>
+              <Link href="#">
+                <a>FAQ</a>
+              </Link>
+              <Link href="#">
+                <a>Vidéos</a>
+              </Link>
+              <Link href="#">
+                <a>Articles</a>
+              </Link>
+              <Link href="#">
+                <a>#NEXT</a>
+              </Link>
+            </Stack>
+          </Flex>
+          <Component {...pageProps} />
+          <Box as="footer" mt="auto" py="8">
+            La Frontenderie 2020
+          </Box>
+          <style jsx global>{`
+            html,
+            body {
+              padding: 0;
+              margin: 0;
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Helvetica, Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
+            }
+
+            * {
+              box-sizing: border-box;
+            }
+          `}</style>
+        </Flex>
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
 
