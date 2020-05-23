@@ -1,6 +1,5 @@
-
-import { default as NextLink } from 'next/link';
-
+import { default as NextLink } from "next/link";
+import fetch from "isomorphic-unfetch";
 import {
   ThemeProvider,
   theme,
@@ -20,25 +19,31 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 import Head from "next/head";
-
-const customTheme = {
-  ...theme,
-  fonts: {
-    heading: `"JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    mono: `"JetBrains Mono", SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
-  },
-};
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri:
-      "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
-  }),
-});
+import { useMemo } from "react";
 
 function MyApp({ Component, pageProps }) {
+  const client = useMemo(() => {
+    console.log("new client");
+    return new ApolloClient({
+      cache: new InMemoryCache(),
+      link: new HttpLink({
+        fetch,
+        uri:
+          "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
+      }),
+    });
+  }, []);
+  const customTheme = useMemo(
+    () => ({
+      ...theme,
+      fonts: {
+        heading: `"JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        mono: `"JetBrains Mono", SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+      },
+    }),
+    []
+  );
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={customTheme}>
@@ -61,11 +66,18 @@ function MyApp({ Component, pageProps }) {
                 "
                 >
                   La Frontenderie
-              </Heading>
+                </Heading>
               </a>
             </NextLink>
 
-            <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8} shouldWrapChildren>
+            <Stack
+              as="nav"
+              ml="auto"
+              isInline
+              fontFamily="heading"
+              spacing={8}
+              shouldWrapChildren
+            >
               <NextLink href="#">
                 <Link>FAQ</Link>
               </NextLink>
@@ -73,14 +85,10 @@ function MyApp({ Component, pageProps }) {
                 <Link>Vidéos</Link>
               </NextLink>
               <NextLink href="#">
-                <Link>
-                  Articles
-                </Link>
+                <Link>Articles</Link>
               </NextLink>
               <NextLink href="#">
-                <Link>
-                  #NEXT
-                </Link>
+                <Link>#NEXT</Link>
               </NextLink>
             </Stack>
           </Flex>
