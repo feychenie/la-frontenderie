@@ -1,7 +1,17 @@
-import Head from "next/head";
-import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import { ArticlesHomeQuery } from "db-types";
+
+import { default as NextLink } from 'next/link';
+
+import {
+  Box,
+  Stack,
+  SimpleGrid,
+  Heading,
+  Text,
+  Link
+} from "@chakra-ui/core";
+
 const ARTICLES_QUERY = gql`
   query ArticlesHome {
     articles(orderBy: publishedAt_DESC) {
@@ -15,15 +25,18 @@ const ARTICLES_QUERY = gql`
   }
 `;
 
-import {
-  Button,
-  Flex,
-  Box,
-  Stack,
-  SimpleGrid,
-  Heading,
-  Text,
-} from "@chakra-ui/core";
+const QA_QUERY = gql`
+  query QAHomeQuery {
+    qAs {
+      question
+      answershort
+      answermedium
+      id
+    }
+  }
+`;
+
+
 
 const SectionHeading = ({ children, ...props }) => (
   <Heading size="xl" {...props}>
@@ -38,23 +51,33 @@ const Teaser = ({ children, ...props }) => (
 );
 
 export default function Home() {
-  const { data, loading, error } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
+  const { data: articlesData, loading: articlesLoading, error: articlesError } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
+  const { data: QAData, loading: QALoading, error: QAError } = useQuery<any>(QA_QUERY);
+
   return (
     <SimpleGrid minChildWidth="20rem" spacing={10}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
-        <Stack spacing={4}>
-          {loading && <p>loading</p>}
-          {!loading &&
-            data &&
-            data.articles.map((article) => (
-              <Link href={`/articles/${article.id}`}>
-                <Teaser key={article.id}>
-                  <Heading>{article.title}</Heading>
-                  <Text>{article.summary}</Text>
-                  <Text>By {article.author?.name}</Text>
-                </Teaser>
-              </Link>
+        <Stack spacing={4} shouldWrapChildren>
+          {articlesLoading && (
+            <Stack spacing={4}>
+              <Teaser><p>Les</p></Teaser>
+              <Teaser><p>articles</p></Teaser>
+              <Teaser><p>arrivent</p></Teaser>
+            </Stack>)
+          }
+          {!articlesLoading &&
+            articlesData &&
+            articlesData.articles.map((article) => (
+              <NextLink key={article.id} href={`/articles/${article.id}`}>
+                <a>
+                  <Teaser>
+                    <Heading>{article.title}</Heading>
+                    <Text>{article.summary}</Text>
+                    <Text>By {article.author?.name}</Text>
+                  </Teaser>
+                </a>
+              </NextLink>
             ))}
         </Stack>
       </Stack>
@@ -66,8 +89,18 @@ export default function Home() {
       </Stack>
       <Stack spacing={8}>
         <SectionHeading>FAQ</SectionHeading>
-        <Stack spacing={4}>
-          <Teaser>Des questions fréquentes arrivent bientôt!</Teaser>
+        <Stack spacing={4} shouldWrapChildren>
+          {!QALoading &&
+            QAData &&
+            QAData.qAs.map((qa) => (
+              <NextLink key={qa.id} href={`/qas/${qa.id}`}>
+                <a>
+                  <Teaser>
+                    <Heading>{qa.question}</Heading>
+                  </Teaser>
+                </a>
+              </NextLink>
+            ))}
         </Stack>
       </Stack>
     </SimpleGrid>

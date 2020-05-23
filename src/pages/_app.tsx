@@ -1,4 +1,6 @@
-// import App from 'next/app'
+
+import { default as NextLink } from 'next/link';
+
 import {
   ThemeProvider,
   theme,
@@ -48,36 +50,41 @@ function MyApp({ Component, pageProps }) {
           </Head>
 
           <Flex as="header" py={8}>
-            <Link href="/">
-              <Heading
-                as="a"
-                size="lg"
-                textShadow="
+            <NextLink href="/">
+              <a>
+                <Heading
+                  size="lg"
+                  textShadow="
                   4px 5px 0px #FFCC005E, 
                   -6px 3px 0px #00FFFF85, 
                   -3px -3px 0px #FF00F56E;
                 "
-              >
-                La Frontenderie
+                >
+                  La Frontenderie
               </Heading>
-            </Link>
+              </a>
+            </NextLink>
 
-            <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8}>
-              <Link href="#">
-                <a>FAQ</a>
-              </Link>
-              <Link href="#">
-                <a>Vidéos</a>
-              </Link>
-              <Link href="#">
-                <a>Articles</a>
-              </Link>
-              <Link href="#">
-                <a>#NEXT</a>
-              </Link>
+            <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8} shouldWrapChildren>
+              <NextLink href="#">
+                <Link>FAQ</Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>Vidéos</Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>
+                  Articles
+                </Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>
+                  #NEXT
+                </Link>
+              </NextLink>
             </Stack>
           </Flex>
-          <Component {...pageProps} />
+          {<Component {...pageProps} />}
           <Box as="footer" mt="auto" py="8">
             La Frontenderie 2020
           </Box>
