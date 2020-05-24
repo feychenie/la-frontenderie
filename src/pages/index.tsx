@@ -1,16 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import { ArticlesHomeQuery } from "db-types";
 
-import { default as NextLink } from 'next/link';
+import { default as NextLink } from "next/link";
 
-import {
-  Box,
-  Stack,
-  SimpleGrid,
-  Heading,
-  Text,
-  Link
-} from "@chakra-ui/core";
+import { Box, Stack, SimpleGrid, Heading, Text, Link } from "@chakra-ui/core";
 
 const ARTICLES_QUERY = gql`
   query ArticlesHome {
@@ -36,8 +29,6 @@ const QA_QUERY = gql`
   }
 `;
 
-
-
 const SectionHeading = ({ children, ...props }) => (
   <Heading size="xl" {...props}>
     {children}
@@ -51,8 +42,14 @@ const Teaser = ({ children, ...props }) => (
 );
 
 export default function Home() {
-  const { data: articlesData, loading: articlesLoading, error: articlesError } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
-  const { data: QAData, loading: QALoading, error: QAError } = useQuery<any>(QA_QUERY);
+  const {
+    data: articlesData,
+    loading: articlesLoading,
+    error: articlesError,
+  } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
+  const { data: QAData, loading: QALoading, error: QAError } = useQuery<any>(
+    QA_QUERY
+  );
 
   return (
     <SimpleGrid minChildWidth="20rem" spacing={10}>
@@ -61,15 +58,25 @@ export default function Home() {
         <Stack spacing={4} shouldWrapChildren>
           {articlesLoading && (
             <Stack spacing={4}>
-              <Teaser><p>Les</p></Teaser>
-              <Teaser><p>articles</p></Teaser>
-              <Teaser><p>arrivent</p></Teaser>
-            </Stack>)
-          }
+              <Teaser>
+                <p>Les</p>
+              </Teaser>
+              <Teaser>
+                <p>articles</p>
+              </Teaser>
+              <Teaser>
+                <p>arrivent</p>
+              </Teaser>
+            </Stack>
+          )}
           {!articlesLoading &&
             articlesData &&
             articlesData.articles.map((article) => (
-              <NextLink key={article.id} href={`/articles/${article.id}`}>
+              <NextLink
+                key={article.id}
+                href="/articles/[slug]"
+                as={`/articles/${article.id}`}
+              >
                 <a>
                   <Teaser>
                     <Heading>{article.title}</Heading>
@@ -93,7 +100,7 @@ export default function Home() {
           {!QALoading &&
             QAData &&
             QAData.qAs.map((qa) => (
-              <NextLink key={qa.id} href={`/qas/${qa.id}`}>
+              <NextLink key={qa.id} href="/qas/[slug]" as={`/qas/${qa.id}`}>
                 <a>
                   <Teaser>
                     <Heading>{qa.question}</Heading>

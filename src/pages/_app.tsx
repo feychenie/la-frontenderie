@@ -1,5 +1,6 @@
 import { default as NextLink } from "next/link";
-import fetch from "isomorphic-unfetch";
+import { ApolloProvider } from "@apollo/client";
+import { createClient } from "lib/apolloClient";
 import {
   ThemeProvider,
   theme,
@@ -12,26 +13,13 @@ import {
 } from "@chakra-ui/core";
 import "typeface-jetbrains-mono";
 
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  ApolloProvider,
-} from "@apollo/client";
 import Head from "next/head";
 import { useMemo } from "react";
 
 function MyApp({ Component, pageProps }) {
   const client = useMemo(() => {
     console.log("new client");
-    return new ApolloClient({
-      cache: new InMemoryCache(),
-      link: new HttpLink({
-        fetch,
-        uri:
-          "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
-      }),
-    });
+    return createClient();
   }, []);
   const customTheme = useMemo(
     () => ({
