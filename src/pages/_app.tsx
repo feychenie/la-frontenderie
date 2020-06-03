@@ -1,4 +1,5 @@
-// import App from 'next/app'
+import { default as NextLink } from "next/link";
+import fetch from "isomorphic-unfetch";
 import {
   ThemeProvider,
   theme,
@@ -18,25 +19,32 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 import Head from "next/head";
-
-const customTheme = {
-  ...theme,
-  fonts: {
-    heading: `"JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    mono: `"JetBrains Mono", SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
-  },
-};
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri:
-      "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
-  }),
-});
+import { useMemo } from "react";
+import MainIcon from 'lib/icons/Main';
 
 function MyApp({ Component, pageProps }) {
+  const client = useMemo(() => {
+    console.log("new client");
+    return new ApolloClient({
+      cache: new InMemoryCache(),
+      link: new HttpLink({
+        fetch,
+        uri:
+          "https://api-eu-central-1.graphcms.com/v2/ckaecqfrf054h01z7h26b71my/master",
+      }),
+    });
+  }, []);
+  const customTheme = useMemo(
+    () => ({
+      ...theme,
+      fonts: {
+        heading: `"JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        mono: `"JetBrains Mono", SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+      },
+    }),
+    []
+  );
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={customTheme}>
@@ -48,36 +56,44 @@ function MyApp({ Component, pageProps }) {
           </Head>
 
           <Flex as="header" py={8}>
-            <Link href="/">
-              <Heading
-                as="a"
-                size="lg"
-                textShadow="
-                  4px 5px 0px #FFCC005E, 
-                  -6px 3px 0px #00FFFF85, 
-                  -3px -3px 0px #FF00F56E;
-                "
-              >
-                La Frontenderie
-              </Heading>
-            </Link>
+            <NextLink href="/">
+              <a>
+                <Heading
+                  size="lg"
+                  textShadow="
+                    4px 5px 0px #FFCC005E, 
+                    -6px 3px 0px #00FFFF85, 
+                    -3px -3px 0px #FF00F56E;
+                  "
+                >
+                  La Frontenderie
+                </Heading>
+              </a>
+            </NextLink>
 
-            <Stack as="nav" ml="auto" isInline fontFamily="heading" spacing={8}>
-              <Link href="#">
-                <a>FAQ</a>
-              </Link>
-              <Link href="#">
-                <a>Vidéos</a>
-              </Link>
-              <Link href="#">
-                <a>Articles</a>
-              </Link>
-              <Link href="#">
-                <a>#NEXT</a>
-              </Link>
+            <Stack
+              as="nav"
+              ml="auto"
+              isInline
+              fontFamily="heading"
+              spacing={8}
+              shouldWrapChildren
+            >
+              <NextLink href="#">
+                <Link>FAQ</Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>Vidéos</Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>Articles</Link>
+              </NextLink>
+              <NextLink href="#">
+                <Link>#NEXT</Link>
+              </NextLink>
             </Stack>
           </Flex>
-          <Component {...pageProps} />
+          {<Component {...pageProps} />}
           <Box as="footer" mt="auto" py="8">
             La Frontenderie 2020
           </Box>

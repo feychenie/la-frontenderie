@@ -1,7 +1,18 @@
-import Head from "next/head";
-import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import { ArticlesHomeQuery } from "db-types";
+import { ArticlesHomeQuery, QaHomeQuery } from "db-types";
+import Teaser from 'lib/Teaser';
+import SectionHeading from 'lib/SectionHeading';
+import { default as NextLink } from "next/link";
+
+import {
+  Box,
+  Stack,
+  SimpleGrid,
+  Heading,
+  Text,
+  Link
+} from "@chakra-ui/core";
+
 const ARTICLES_QUERY = gql`
   query ArticlesHome {
     articles(orderBy: publishedAt_DESC) {
@@ -15,59 +26,71 @@ const ARTICLES_QUERY = gql`
   }
 `;
 
-import {
-  Button,
-  Flex,
-  Box,
-  Stack,
-  SimpleGrid,
-  Heading,
-  Text,
-} from "@chakra-ui/core";
-
-const SectionHeading = ({ children, ...props }) => (
-  <Heading size="xl" {...props}>
-    {children}
-  </Heading>
-);
-
-const Teaser = ({ children, ...props }) => (
-  <Box bg="gray.100" p="6" {...props}>
-    {children}
-  </Box>
-);
+const QA_QUERY = gql`
+  query QAHome {
+    qAs {
+      question
+      answershort
+      answermedium
+      id
+    }
+  }
+`;
 
 export default function Home() {
-  const { data, loading, error } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
+  const {
+    data: articlesData,
+    loading: articlesLoading,
+    error: articlesError,
+  } = useQuery<ArticlesHomeQuery>(ARTICLES_QUERY);
+  
+  const { data: QAData, loading: QALoading, error: QAError } = useQuery<QaHomeQuery>(
+    QA_QUERY
+  );
+
   return (
     <SimpleGrid minChildWidth="20rem" spacing={10}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
-        <Stack spacing={4}>
-          {loading && <p>loading</p>}
-          {!loading &&
-            data &&
-            data.articles.map((article) => (
-              <Link href={`/articles/${article.id}`}>
-                <Teaser key={article.id}>
-                  <Heading>{article.title}</Heading>
-                  <Text>{article.summary}</Text>
-                  <Text>By {article.author?.name}</Text>
-                </Teaser>
-              </Link>
+        <Stack spacing={4} shouldWrapChildren>
+          {articlesLoading && (
+            <Stack spacing={4}>
+              <div>Loading</div>
+            </Stack>
+          )}
+          {!articlesLoading &&
+            articlesData &&
+            articlesData.articles.map((article) => (
+              <Teaser
+                key={article.id}
+                title={article.title}
+                summary={article.summary}
+                href="/articles/[slug]"
+                url={`/articles/${article.id}`}
+              />
             ))}
         </Stack>
       </Stack>
       <Stack spacing={8}>
         <SectionHeading>Vidéos</SectionHeading>
         <Stack spacing={4}>
-          <Teaser>Une video ici bientôt</Teaser>
+
         </Stack>
       </Stack>
       <Stack spacing={8}>
         <SectionHeading>FAQ</SectionHeading>
-        <Stack spacing={4}>
-          <Teaser>Des questions fréquentes arrivent bientôt!</Teaser>
+        <Stack spacing={4} shouldWrapChildren>
+          {!QALoading &&
+            QAData &&
+            QAData.qAs.map((qa) => (
+              <Teaser
+                key={qa.id}
+                title={qa.question}
+                summary={qa.answershort}
+                href="/qas/[slug]"
+                url={`/qas/${qa.id}`}
+              />
+            ))}
         </Stack>
       </Stack>
     </SimpleGrid>
