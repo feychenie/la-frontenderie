@@ -20,6 +20,7 @@ import {
 } from "@apollo/client";
 import Head from "next/head";
 import { useMemo } from "react";
+import MainIcon from 'lib/icons/Main';
 
 function MyApp({ Component, pageProps }) {
   const client = useMemo(() => {
@@ -60,10 +61,10 @@ function MyApp({ Component, pageProps }) {
                 <Heading
                   size="lg"
                   textShadow="
-                  4px 5px 0px #FFCC005E, 
-                  -6px 3px 0px #00FFFF85, 
-                  -3px -3px 0px #FF00F56E;
-                "
+                    4px 5px 0px #FFCC005E, 
+                    -6px 3px 0px #00FFFF85, 
+                    -3px -3px 0px #FF00F56E;
+                  "
                 >
                   La Frontenderie
                 </Heading>
