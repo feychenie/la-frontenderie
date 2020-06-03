@@ -9,6 +9,7 @@ import {
   Stack,
   Link,
   Box,
+  ColorModeProvider,
 } from "@chakra-ui/core";
 import "typeface-jetbrains-mono";
 
@@ -48,56 +49,58 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={customTheme}>
-        <CSSReset />
-        <Flex px={8} direction="column" minH="100vh">
-          <Head>
-            <title>Frontenderie - La fabrique à développeurs frontend !</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
+        <ColorModeProvider>
+          <CSSReset />
+          <Flex px={{xs: 4, md: 8}} direction="column" minH="100vh">
+            <Head>
+              <title>Frontenderie - La fabrique à développeurs frontend !</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-          <Flex as="header" py={8}>
-            <NextLink href="/">
-              <a>
-                <Heading
-                  size="lg"
-                  textShadow="
+            <Flex as="header" py={8} direction={{ xs: 'column', md: 'row' }} >
+              <NextLink href="/">
+                <a>
+                  <Heading
+                    size="lg"
+                    textShadow="
                     4px 5px 0px #FFCC005E, 
                     -6px 3px 0px #00FFFF85, 
                     -3px -3px 0px #FF00F56E;
                   "
-                >
-                  La Frontenderie
+                  >
+                    La Frontenderie
                 </Heading>
-              </a>
-            </NextLink>
-
-            <Stack
-              as="nav"
-              ml="auto"
-              isInline
-              fontFamily="heading"
-              spacing={8}
-              shouldWrapChildren
-            >
-              <NextLink href="#">
-                <Link>FAQ</Link>
+                </a>
               </NextLink>
-              <NextLink href="#">
-                <Link>Vidéos</Link>
-              </NextLink>
-              <NextLink href="#">
-                <Link>Articles</Link>
-              </NextLink>
-              <NextLink href="#">
-                <Link>#NEXT</Link>
-              </NextLink>
-            </Stack>
-          </Flex>
-          {<Component {...pageProps} />}
-          <Box as="footer" mt="auto" py="8">
-            La Frontenderie 2020
+              <Stack
+                mt={{ xs: 8, md: 0 }}
+                justifyContent={{ xs: "space-evenly", md: "flex-end" }}
+                as="nav"
+                ml={{ xs: 0, md: "auto" }}
+                isInline
+                fontFamily="heading"
+                spacing={{ xs: 4, md: 8 }}
+                shouldWrapChildren
+              >
+                <NextLink href="#">
+                  <Link>FAQ</Link>
+                </NextLink>
+                <NextLink href="#">
+                  <Link>Vidéos</Link>
+                </NextLink>
+                <NextLink href="#">
+                  <Link>Articles</Link>
+                </NextLink>
+                <NextLink href="#">
+                  <Link>#NEXT</Link>
+                </NextLink>
+              </Stack>
+            </Flex>
+            <Component {...pageProps} />
+            <Box as="footer" mt="auto" py="8">
+              La Frontenderie 2020
           </Box>
-          <style jsx global>{`
+            <style jsx global>{`
             html,
             body {
               padding: 0;
@@ -111,7 +114,8 @@ function MyApp({ Component, pageProps }) {
               box-sizing: border-box;
             }
           `}</style>
-        </Flex>
+          </Flex>
+        </ColorModeProvider>
       </ThemeProvider>
     </ApolloProvider>
   );

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { ArticlesHomeQuery, QaHomeQuery } from "db-types";
+import { ArticlesHomeQuery, QaHomeQuery, VideosHomeQuery } from "db-types";
 import Teaser from 'lib/Teaser';
 import SectionHeading from 'lib/SectionHeading';
 import { default as NextLink } from "next/link";
@@ -37,6 +37,20 @@ const QA_QUERY = gql`
   }
 `;
 
+const VIDEOS_QUERY = gql`
+  query VideosHome {
+    videos(first: 3, orderBy: publishedAt_DESC ) {
+      id
+      title
+      videoUrl
+      source
+      thumbnail {
+        url
+      }
+    }
+  }
+`
+
 export default function Home() {
   const {
     data: articlesData,
@@ -48,8 +62,10 @@ export default function Home() {
     QA_QUERY
   );
 
+  const { data: videosData } = useQuery<VideosHomeQuery>(VIDEOS_QUERY);
+
   return (
-    <SimpleGrid minChildWidth="20rem" spacing={10}>
+    <SimpleGrid minChildWidth="16rem" spacing={10}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
         <Stack spacing={4} shouldWrapChildren>
@@ -73,8 +89,10 @@ export default function Home() {
       </Stack>
       <Stack spacing={8}>
         <SectionHeading>Vidéos</SectionHeading>
-        <Stack spacing={4}>
-
+        <Stack spacing={4} shouldWrapChildren>
+          {videosData?.videos?.map(v => {
+            return <Teaser key={v.id} media={v.thumbnail} title={v.title} url={`/videos/${v.id}`} href={`/videos/[slug]`} summary="on verra" />
+          })}
         </Stack>
       </Stack>
       <Stack spacing={8}>
