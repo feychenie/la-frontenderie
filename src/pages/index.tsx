@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { ArticlesHomeQuery, QaHomeQuery, VideosHomeQuery } from "db-types";
-import Teaser from "lib/Teaser";
-import SectionHeading from "lib/SectionHeading";
+import Teaser from "lib/components/Teaser";
+import SectionHeading from "lib/components/SectionHeading";
 import { default as NextLink } from "next/link";
 
 import { Box, Stack, SimpleGrid, Heading, Text, Link } from "@chakra-ui/core";
@@ -61,7 +61,7 @@ export default function Home() {
   const { data: videosData } = useQuery<VideosHomeQuery>(VIDEOS_QUERY);
 
   return (
-    <SimpleGrid minChildWidth="16rem" spacing={10}>
+    <SimpleGrid minChildWidth="24rem" spacing={10}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
         <Stack spacing={4} shouldWrapChildren>

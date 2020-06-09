@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { Heading, Stack, Text } from "@chakra-ui/core";
-import { PageLayout } from "lib/PageLayout";
+import { PageLayout } from "lib/components/PageLayout";
 
 const QA_QUERY = gql`
   query QAQuery($slug: String!) {
     qA(where: { slug: $slug }) {
-        question
-        slug
-        answershort
-        answermedium
-        id
+      question
+      slug
+      answershort
+      answermedium
+      id
     }
   }
 `;
