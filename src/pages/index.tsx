@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { ArticlesHomeQuery, QaHomeQuery, VideosHomeQuery } from "db-types";
-import Teaser from "lib/Teaser";
-import SectionHeading from "lib/SectionHeading";
+import Teaser from "lib/components/Teaser";
+import SectionHeading from "lib/components/SectionHeading";
 import { default as NextLink } from "next/link";
 
 import { Box, Stack, SimpleGrid, Heading, Text, Link } from "@chakra-ui/core";
@@ -11,6 +11,7 @@ const ARTICLES_QUERY = gql`
     articles(orderBy: publishedAt_DESC) {
       id
       title
+      slug
       summary
       author {
         name
@@ -22,10 +23,11 @@ const ARTICLES_QUERY = gql`
 const QA_QUERY = gql`
   query QAHome {
     qAs {
+      id
       question
+      slug
       answershort
       answermedium
-      id
     }
   }
 `;
@@ -35,6 +37,7 @@ const VIDEOS_QUERY = gql`
     videos(first: 3, orderBy: publishedAt_DESC) {
       id
       title
+      slug
       videoUrl
       source
       thumbnail {
@@ -58,7 +61,7 @@ export default function Home() {
   const { data: videosData } = useQuery<VideosHomeQuery>(VIDEOS_QUERY);
 
   return (
-    <SimpleGrid minChildWidth="16rem" spacing={10}>
+    <SimpleGrid minChildWidth="24rem" spacing={10}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
         <Stack spacing={4} shouldWrapChildren>
@@ -75,7 +78,7 @@ export default function Home() {
                 title={article.title}
                 summary={article.summary}
                 href="/articles/[slug]"
-                url={`/articles/${article.id}`}
+                url={`/articles/${article.slug}`}
               />
             ))}
         </Stack>
@@ -89,7 +92,7 @@ export default function Home() {
                 key={v.id}
                 media={v.thumbnail}
                 title={v.title}
-                url={`/videos/${v.id}`}
+                url={`/videos/${v.slug}`}
                 href={`/videos/[slug]`}
                 summary="on verra"
               />
@@ -108,7 +111,7 @@ export default function Home() {
                 title={qa.question}
                 summary={qa.answershort}
                 href="/qas/[slug]"
-                url={`/qas/${qa.id}`}
+                url={`/qas/${qa.slug}`}
               />
             ))}
         </Stack>
