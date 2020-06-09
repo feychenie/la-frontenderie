@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { Heading, Stack, Text } from "@chakra-ui/core";
+import { PageLayout } from "lib/PageLayout";
 
 const QA_QUERY = gql`
   query QAQuery($id: ID!) {
@@ -23,20 +24,19 @@ const Qa = function Qa(props) {
     },
   });
 
-  console.log({ data, loading });
   if (loading) return <p>loading</p>;
   if (error) return <p> error</p>;
   const {
     qA: { question, answershort, answermedium },
   } = data;
   return (
-    <div>
+    <PageLayout>
       <Stack spacing={8}>
         <Heading>{question}</Heading>
         <Text>{answershort}</Text>
         <Text>{answermedium}</Text>
       </Stack>
-    </div>
+    </PageLayout>
   );
 };
 

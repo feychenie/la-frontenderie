@@ -3,5 +3,5 @@ const withMDX = require("@next/mdx")({
 });
 
 module.exports = withMDX({
-  pageExtensions: ["mdx", "md", "jsx", "js", "ts", "tsx"],
+  pageExtensions: ["mdx", "md", "jsx", "js", "ts", "tsx"]
 });

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { ArticleQuery, ArticleQueryVariables } from "db-types";
 import { Heading, Stack, Text } from "@chakra-ui/core";
+import { PageLayout } from "lib/PageLayout";
 
 const ARTICLE_QUERY = gql`
   query Article($id: ID!) {
@@ -40,13 +41,13 @@ const Article = function Article(props) {
     article: { title, summary, body, author },
   } = data;
   return (
-    <div>
+    <PageLayout>
       <Stack spacing={8}>
         <Heading>{title}</Heading>
         <Text>{summary}</Text>
         <Text>{body}</Text>
       </Stack>
-    </div>
+    </PageLayout>
   );
 };
 
