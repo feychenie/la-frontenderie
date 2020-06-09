@@ -4,9 +4,10 @@ import { Heading, Stack, Text } from "@chakra-ui/core";
 import { PageLayout } from "lib/PageLayout";
 
 const QA_QUERY = gql`
-  query QAQuery($id: ID!) {
-    qA(where: { id: $id }) {
+  query QAQuery($slug: String!) {
+    qA(where: { slug: $slug }) {
         question
+        slug
         answershort
         answermedium
         id
@@ -19,8 +20,7 @@ const Qa = function Qa(props) {
 
   const { data, loading, error } = useQuery<any, any>(QA_QUERY, {
     variables: {
-      // @ts-ignore
-      id: router.query.slug,
+      slug: router.query.slug,
     },
   });
 

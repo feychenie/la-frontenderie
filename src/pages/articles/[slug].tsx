@@ -5,11 +5,12 @@ import { Heading, Stack, Text } from "@chakra-ui/core";
 import { PageLayout } from "lib/PageLayout";
 
 const ARTICLE_QUERY = gql`
-  query Article($id: ID!) {
-    article(where: { id: $id }) {
+  query Article($slug: String!) {
+    article(where: { slug: $slug }) {
       id
       summary
       title
+      slug
       body
       author {
         name
@@ -23,14 +24,13 @@ const ARTICLE_QUERY = gql`
 
 const Article = function Article(props) {
   const router = useRouter();
-  console.log(router.query);
   const { data, loading, error } = useQuery<
     ArticleQuery,
     ArticleQueryVariables
   >(ARTICLE_QUERY, {
     variables: {
       // @ts-ignore
-      id: router.query.slug,
+      slug: router.query.slug,
     },
   });
   // const { pid } =

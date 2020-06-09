@@ -6,10 +6,11 @@ import { PageLayout } from 'lib/PageLayout'
 import ReactPlayer from 'react-player'
 
 const VIDEO_QUERY = gql`
-  query Video($id: ID!) {
-    video(where: { id: $id }) {
+  query Video($slug: String!) {
+    video(where: { slug: $slug }) {
       id
       title
+      slug
       videoUrl
       thumbnail {
         url
@@ -27,7 +28,7 @@ const Video = function Article(props) {
   >(VIDEO_QUERY, {
     variables: {
       // @ts-ignore
-      id: router.query.slug,
+      slug: router.query.slug,
     },
   });
   if (loading) return <p>loading</p>;

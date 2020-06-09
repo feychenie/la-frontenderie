@@ -1,0 +1,96 @@
+
+# Pourquoi l'HTML ?
+
+Un document web repose principalement sur deux langages: HTML et CSS.
+Nous allons voir pourquoi HTML est la norme.
+
+Objectif de l'article: Donner des clés de comprenhensions sur des fondamentaux, essentiels à la suite de vos aventures dans le développement web !
+
+## D'abord un besoin
+
+Si je vous demande d'écrire votre adresse sur une feuille, il y a de grandes chances que cela ressemble à : `34 rue des ponts, Dieppe 76200, France`, plutôt qu'à `76200 France rue des ponts Dieppe 34`.
+
+Pourquoi ? Par convention et parce que vous avez le souci d'assurer que cette information soit correctement partagée. 
+C'est à dire re-lue et éventuellement ré-écrite.
+
+Ce besoin, le partage d'informations, est central en informatique. Au fil des années, plusieurs formats ont vu le jour, certains évoluent encore de nos jours !
+
+### CSV ?
+
+CSV pour "comma seprated value", est une convention de partage de données à base de virgules :)
+
+ ```
+ 1,michel,jedev,34,rue des ponts,76200,France
+ 2,marise,jecode,42,av des hirondelles,31400,Toulouse
+ ```
+
+Simple et efficace. Charger dans un logiciel comme Excel, il offre la possiblité de filtrer et rechercher des données, cool.
+
+### XML !
+
+Puis une autre proposition a été faites XML (def).
+
+```xml
+<contacts>
+   <contact id="1">
+      <name>michel</name>
+      <lastName>jedev</lastName>
+      <streetNumber>14</streetNumber>
+      <streetName>rue des ponts</streetName>
+      <postCode>75000</postCode>
+      <city>Paris</city>
+   </contact>
+   <contact id="2">
+      <name>Brigitte</name>
+      <lastName>jecode</lastName>
+      <streetNumber>9s</streetNumber>
+      <streetName>av des hirondelles</streetName>
+      <postCode>31000</postCode>
+      <city>Toulouse</city>
+   </contact>
+</contacts>
+```
+
+Plus verbeux, que le CSV, on parle désormais de **language de balisage**.
+
+l'XML a, entres autre, l'avantage de pouvoir représenter un lien hierarchique entre les données.
+Par conséquent le lexique autour de ce language est emprunté à la généalogie. Le sujet principal étant le `noeud`, on va parler de: `noeuds parents`,  `noeuds enfants` et `d'attributs de noeud`.
+
+Par ailleurs XML s'est vu doté d'un language de requetage, XPath. Se dernier propose des méthodes pour filtrer/trier les données XML.
+Nous y reviendrions plus tard !
+
+
+### HTML !!
+
+Vous avez tenu bon ? Ca tombe bien on y est ! HTML !!!!
+
+Traduisons notre exemple initial en HTML:
+
+```html
+
+<ol>
+   <li id="1">
+      <p></p>
+      <address></address>
+   </li>
+   <li id="2">
+      
+   </li>
+</ol>
+```
+
+Vous ne remarquez pas une forte ressemblence avec un autre language de balisage  ... ?
+
+Exact, HTML est trés proches de XML et pour cause, HTML est une sous définition de XML.
+
+HTML offre une vision moins générique que XML, plus adéquat aux besoins d'une page web.
+
+## A retenir
+
+- le role princiapl de HTML est de structurer les données dans un document.
+- Le lexique: document, noeud, noeud parent/enfant, attributs
+
+## Ressources
+
+- https://en.wikipedia.org/wiki/Comparison_of_layout_engines_(XML)#Query_technologies
+- https://en.wikipedia.org/wiki/XPath
