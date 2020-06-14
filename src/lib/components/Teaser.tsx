@@ -41,10 +41,10 @@ const Teaser: React.FC<TeaserProps> = (props) => {
           bg="blackAlpha.800"
           p="4"
           spacing="4"
-          position="static"
-          left="10"
-          right="10"
-          bottom="10"
+          position="absolute"
+          left="0"
+          right="0"
+          bottom="0"
           color="white"
         >
           <Heading fontSize="2xl" as="h3">
