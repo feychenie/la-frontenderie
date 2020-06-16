@@ -24,16 +24,16 @@ function laFrontenderie({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <ColorModeProvider>
           <CSSReset />
-          <Flex px={{ xs: 4, md: 8 }} direction="column" minH="100vh">
+          <Flex direction="column" minH="100vh">
             <Head>
               <title>
                 Frontenderie - La fabrique à développeurs frontend !
               </title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header />
+            <Header px={{ xs: 4, md: 8 }} />
             <Component {...pageProps} />
-            <Box as="footer" mt="auto" py="8">
+            <Box as="footer" mt="auto" py="8" px={{ xs: 4, md: 8 }}>
               La Frontenderie 2020
             </Box>
           </Flex>

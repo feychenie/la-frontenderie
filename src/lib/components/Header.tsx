@@ -6,12 +6,15 @@ import {
   Link,
   useColorMode,
   IconButton,
+  FlexProps
 } from "@chakra-ui/core";
 
-export function Header() {
+type HeaderProps = FlexProps;
+
+export function Header(props: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex as="header" py={8} direction={{ xs: "column", md: "row" }}>
+    <Flex as="header" py={8} direction={{ xs: "column", md: "row" }} {...props}>
       <NextLink href="/">
         <a>
           <Heading

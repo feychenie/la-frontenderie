@@ -63,7 +63,7 @@ export default function Home(props) {
 
   const { articles = [], videos = [], faq = [] } = props;
   return (
-    <SimpleGrid minChildWidth="24rem" spacing={10}>
+    <SimpleGrid minChildWidth="24rem" spacing={10} px={{ xs: 4, md: 8 }}>
       <Stack spacing={8}>
         <SectionHeading>Articles</SectionHeading>
         <Stack spacing={4} shouldWrapChildren>
