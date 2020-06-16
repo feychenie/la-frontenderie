@@ -3864,6 +3864,17 @@ export type VideoQuery = (
   )> }
 );
 
+export type AllVideosQueryVariables = {};
+
+
+export type AllVideosQuery = (
+  { __typename?: 'Query' }
+  & { videos: Array<(
+    { __typename?: 'Video' }
+    & Pick<Video, 'slug'>
+  )> }
+);
+
 
       export interface IntrospectionResultData {
         __schema: {
