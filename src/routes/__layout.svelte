@@ -1,22 +1,31 @@
 <script lang="ts">
 	import '../app.css';
+	import '$lib/styles/reset.css';
 	import '$lib/styles/styles.css';
+	import { themeClass } from '$lib/styles/theme-default.css';
+	import { darkTheme } from '$lib/styles/theme-dark.css';
+
+	import Container from '$lib/container/index.svelte';
+
+	let theme = 'default';
+
+	$: themeIsDark = theme === 'dark';
+
+	const toggleTheme = () => {
+		theme = theme === 'default' ? 'dark' : 'default';
+	};
 </script>
 
-<main>
-	<div style="background-color: hsl(140, 36%, 55%);" />
-	<div style="background-color: hsl(140, 36%, 50%);" />
-	<div style="background-color: hsl(140, 36%, 40%);" />
-	<div style="background-color: hsl(140, 36%, 30%);" />
-	<div style="background-color: hsl(140, 36%, 10%);" />
-	<div style="background-color: hsl(140, 36%, 6%);" />
+<div id="root" class="{themeClass} {themeIsDark ? darkTheme : ''}">
+	<header>
+		<Container>Frontenderie !</Container>
+	</header>
 
-	<slot />
-</main>
+	<button on:click={toggleTheme} >Toggle theme</button>
 
-<style>
-	div {
-		width: 5rem;
-		height: 5rem;
-	}
-</style>
+	<Container>
+		<main>
+			<slot />
+		</main>
+	</Container>
+</div>

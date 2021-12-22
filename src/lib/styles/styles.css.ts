@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
+import { themeClass, vars } from '$lib/styles/theme-default.css';
 import {
 	fontSize0,
 	fontSize1,
@@ -6,14 +7,12 @@ import {
 	fontSize3,
 	fontSize4,
 	fontSize5,
-	colorsPalette
+	blue
 } from '$lib/styles/vars.css';
 
 import { modularScale } from 'polished';
 
-console.log(colorsPalette);
-
-globalStyle('body', {
+globalStyle('#root', {
 	vars: {
 		[fontSize0]: modularScale(0),
 		[fontSize1]: modularScale(1),
@@ -21,10 +20,11 @@ globalStyle('body', {
 		[fontSize3]: modularScale(3),
 		[fontSize4]: modularScale(4),
 		[fontSize5]: modularScale(5),
-		...colorsPalette
+		[blue]: vars.colour.dark
 	}
 });
 
-globalStyle('body', {
-	fontSize: [fontSize1]
+globalStyle('#root', {
+	fontSize: [fontSize1],
+	backgroundColor: [blue]
 });
