@@ -5,7 +5,7 @@ export const [themeClass, vars] = createTheme({
 		primary: '#292283',
 		secondary: '#19ffff',
 		alternative: '#ff9801',
-		light: '#ed442e',
-		dark: '#ea1e63'
+		light: '#fff',
+		dark: '#191919'
 	}
 });

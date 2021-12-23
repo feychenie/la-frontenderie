@@ -5,26 +5,28 @@
 	import { themeClass } from '$lib/styles/theme-default.css';
 	import { darkTheme } from '$lib/styles/theme-dark.css';
 
+	import Header from '$lib/Header.svelte';
 	import Container from '$lib/container/index.svelte';
+	import { sprinkles } from '$lib/styles/sprinkles.css';
+	import { currentTheme } from '$lib/store.js';
 
-	let theme = 'default';
-
-	$: themeIsDark = theme === 'dark';
-
-	const toggleTheme = () => {
-		theme = theme === 'default' ? 'dark' : 'default';
-	};
+	$: themeIsDark = $currentTheme === 'dark';
 </script>
 
 <div id="root" class="{themeClass} {themeIsDark ? darkTheme : ''}">
-	<header>
+	<Header>
 		<Container>Frontenderie !</Container>
-	</header>
-
-	<button on:click={toggleTheme} >Toggle theme</button>
+	</Header>
 
 	<Container>
-		<main>
+		<main
+			class={sprinkles({
+				display: 'grid',
+				width: 'full',
+				gap: '6x',
+				gridTemplateColumns: 3
+			})}
+		>
 			<slot />
 		</main>
 	</Container>

@@ -20,6 +20,7 @@
 </script>
 
 <script type="ts">
+	import Card from '$lib/card/index.svelte';
 	export let articles = [];
 </script>
 
@@ -27,12 +28,8 @@
 	<title>Home</title>
 </svelte:head>
 
-<h1>Frontenderie !</h1>
-
-{#each articles as article}
-	<article>
-		<h2>{article.title}</h2>
-		<p>{article.summary}</p>
-		<div>{article.author.name}</div>
-	</article>
+{#each new Array(10) as truc}
+	{#each articles as article}
+		<Card {article} />
+	{/each}
 {/each}
