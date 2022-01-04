@@ -14,7 +14,7 @@ export const card = style({
 export const cardHeader = style({
 	paddingInline: globalThemeVars.space['1x'],
 	paddingBlock: globalThemeVars.space['2x'],
-	backgroundColor: themeVars.colour.alternative,
+	backgroundColor: themeVars.colour.primary,
 	borderTopLeftRadius: globalThemeVars.rounded.xs,
 	borderTopRightRadius: globalThemeVars.rounded.xs,
 	fontSize: globalThemeVars.fontSizes.fontSize2,

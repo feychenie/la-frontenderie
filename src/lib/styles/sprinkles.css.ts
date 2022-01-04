@@ -13,10 +13,20 @@ const responsiveProperties = defineProperties({
 		marginBottom: globalThemeVars.space,
 		marginLeft: globalThemeVars.space,
 		marginRight: globalThemeVars.space,
-		display: ['none', 'flex', 'grid'],
+		display: ['none', 'flex', 'grid', 'block'],
+		flexDirection: ['row', 'row-reverse', 'column'],
 		width: globalThemeVars.widths,
 		gridTemplateColumns: globalThemeVars.gridCols,
-		gap: globalThemeVars.space
+		gap: globalThemeVars.space,
+		justifyContent: [
+			'stretch',
+			'flex-start',
+			'center',
+			'flex-end',
+			'space-around',
+			'space-between'
+		],
+		alignItems: ['stretch', 'flex-start', 'center', 'flex-end']
 	},
 	shorthands: {
 		margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],

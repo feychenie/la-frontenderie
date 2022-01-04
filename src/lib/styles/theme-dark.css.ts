@@ -3,10 +3,10 @@ import { vars as defaultThemeVars } from '$lib/styles/theme-default.css';
 
 export const darkTheme = createTheme(defaultThemeVars, {
 	colour: {
-		primary: 'blue',
-		secondary: 'blue',
-		alternative: 'blue',
-		light: 'blue',
-		dark: '#ff9801'
+		primary: '#F5CB5C',
+		white: '#E8EDDF',
+		light: '#CFDBD5',
+		dark: '#333533',
+		black: '#242423'
 	}
 });

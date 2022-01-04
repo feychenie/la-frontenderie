@@ -1,5 +1,5 @@
 <script context="module">
-	export async function load({ page, fetch }) {
+	export async function load({ fetch }) {
 		const response = await fetch(`index.json`);
 
 		if (response.ok) {
@@ -20,7 +20,8 @@
 </script>
 
 <script type="ts">
-	import Card from '$lib/card/index.svelte';
+	import { sprinkles } from '$lib/styles/sprinkles.css';
+	import Card from '$lib/molecules/card/index.svelte';
 	export let articles = [];
 </script>
 
@@ -28,8 +29,18 @@
 	<title>Home</title>
 </svelte:head>
 
-{#each new Array(10) as truc}
+<main
+	class={sprinkles({
+		display: 'block',
+		width: 'full'
+	})}
+>
 	{#each articles as article}
-		<Card {article} />
+		<Card
+			{article}
+			class={sprinkles({
+				marginTop: '2x'
+			})}
+		/>
 	{/each}
-{/each}
+</main>

@@ -11,10 +11,11 @@
 		publishedAt: ''
 	};
 
+	const { class: classProps = '', ...restProps } = $$restProps;
 	const { title, summary, author, publishedAt } = article;
 </script>
 
-<section class={card}>
+<section class="{card} {classProps}" {...restProps}>
 	<header class={cardHeader}>
 		<div>{title}</div>
 	</header>
@@ -31,11 +32,12 @@
 		})}"
 	>
 		<div>{author.name}</div>
-		<time datetime={publishedAt}
+		<time
+			datetime={publishedAt}
 			class={sprinkles({
 				marginLeft: 'auto'
 			})}
-			>
+		>
 			{new Date(publishedAt).toLocaleDateString('fr-FR')}
 		</time>
 	</footer>

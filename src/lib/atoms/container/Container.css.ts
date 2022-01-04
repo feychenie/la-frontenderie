@@ -9,15 +9,6 @@ export const container = style({
 		},
 		'screen and (min-width: 768px)': {
 			maxWidth: '720px'
-		},
-		'screen and (min-width: 992px)': {
-			maxWidth: '960px'
-		},
-		'screen and (min-width: 1200px)': {
-			maxWidth: '1140px'
-		},
-		'screen and (min-width: 1400px)': {
-			maxWidth: '1320px'
 		}
 	}
 });

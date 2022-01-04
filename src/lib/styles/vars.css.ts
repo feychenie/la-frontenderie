@@ -22,3 +22,5 @@ export const roundedFull = createVar();
 
 export const fontFamilyHeadings = createVar();
 export const fontFamilyBody = createVar();
+
+export const themeSwitcherPosition = createVar();

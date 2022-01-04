@@ -5,29 +5,39 @@
 	import { themeClass } from '$lib/styles/theme-default.css';
 	import { darkTheme } from '$lib/styles/theme-dark.css';
 
-	import Header from '$lib/Header.svelte';
-	import Container from '$lib/container/index.svelte';
-	import { sprinkles } from '$lib/styles/sprinkles.css';
+	import Header from '$lib/organisms/header/Header.svelte';
+	import Footer from '$lib/organisms/footer/Footer.svelte';
+	import Container from '$lib/atoms/container/Container.svelte';
+
 	import { currentTheme } from '$lib/store.js';
+	import { sprinkles } from '$lib/styles/sprinkles.css';
+	import ThemeSwitcher from '$lib/molecules/themeSwitcher/ThemeSwitcher.svelte';
 
 	$: themeIsDark = $currentTheme === 'dark';
 </script>
 
-<div id="root" class="{themeClass} {themeIsDark ? darkTheme : ''}">
+<div
+	id="root"
+	class="{sprinkles({
+		display: 'flex',
+		flexDirection: 'column'
+	})} {themeClass} {themeIsDark ? darkTheme : ''}"
+>
 	<Header>
 		<Container>Frontenderie !</Container>
 	</Header>
 
 	<Container>
-		<main
+		<slot />
+	</Container>
+
+	<Footer>
+		<div
 			class={sprinkles({
-				display: 'grid',
-				width: 'full',
-				gap: '6x',
-				gridTemplateColumns: 3
+				display: 'flex'
 			})}
 		>
-			<slot />
-		</main>
-	</Container>
+			<ThemeSwitcher class={sprinkles({ marginLeft: '2x' })} />
+		</div>
+	</Footer>
 </div>

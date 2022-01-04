@@ -1,5 +1,5 @@
 <script>
-	import { container, centered } from './index.css';
+	import { container, centered } from './Container.css';
 	export let center = true;
 </script>
 

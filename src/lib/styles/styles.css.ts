@@ -1,4 +1,4 @@
-import { globalStyle, createGlobalTheme } from '@vanilla-extract/css';
+import { globalStyle, createGlobalTheme, style } from '@vanilla-extract/css';
 import { vars as themeVars } from '$lib/styles/theme-default.css';
 
 import { modularScale } from 'polished';
@@ -56,5 +56,10 @@ globalStyle('#root', {
 	backgroundColor: themeVars.colour.dark,
 	minHeight: '100vh',
 	color: themeVars.colour.light,
-	fontFamily: globalThemeVars.fonts.fontFamilyBody
+	fontFamily: globalThemeVars.fonts.fontFamilyBody,
+	transition: 'color .2s ease-in, background-color .2s ease-in'
+});
+
+export const listUnstyled = style({
+	listStyle: 'none'
 });
