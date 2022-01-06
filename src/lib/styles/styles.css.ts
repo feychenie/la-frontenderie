@@ -1,6 +1,5 @@
-import { globalStyle, createGlobalTheme, style } from '@vanilla-extract/css';
+import { globalStyle, createGlobalTheme, style, globalFontFace } from '@vanilla-extract/css';
 import { vars as themeVars } from '$lib/styles/theme-default.css';
-
 import { modularScale } from 'polished';
 
 const createScale = (ratio: number, base: number) => (steps: number) =>
@@ -21,6 +20,15 @@ export const globalThemeVars = createGlobalTheme(':root', {
 		'6x': spaceScale(6),
 		'7x': spaceScale(7),
 		'8x': spaceScale(8)
+	},
+	borders: {
+		none: '0',
+		default: '1px',
+		wide: '2px'
+	},
+	stack: {
+		none: '0',
+		1: spaceScale(2)
 	},
 	rounded: {
 		xs: '0.313rem',
@@ -51,11 +59,15 @@ export const globalThemeVars = createGlobalTheme(':root', {
 	}
 });
 
+globalFontFace('Rubik', {
+	src: `local(''), url('../fonts/rubik-v14-latin-regular.woff2') format('woff2')`
+});
+
 globalStyle('#root', {
 	fontSize: globalThemeVars.fontSizes.fontSize1,
-	backgroundColor: themeVars.colour.dark,
+	backgroundImage: `linear-gradient(180deg, ${themeVars.color.contentBg} 0%, ${themeVars.color.appBg} 70%)`,
 	minHeight: '100vh',
-	color: themeVars.colour.light,
+	color: themeVars.color.text,
 	fontFamily: globalThemeVars.fonts.fontFamilyBody,
 	transition: 'color .2s ease-in, background-color .2s ease-in'
 });

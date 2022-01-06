@@ -21,8 +21,10 @@
 
 <script type="ts">
 	import { sprinkles } from '$lib/styles/sprinkles.css';
-	import Card from '$lib/molecules/card/index.svelte';
+	import Card from '$lib/molecules/card/Card.svelte';
+import Container from '$lib/atoms/container/Container.svelte';
 	export let articles = [];
+	const items = [2, 2, 2];
 </script>
 
 <svelte:head>
@@ -32,15 +34,21 @@
 <main
 	class={sprinkles({
 		display: 'block',
-		width: 'full'
+		width: 'full',
+		marginTop: '8x'
 	})}
 >
-	{#each articles as article}
-		<Card
-			{article}
-			class={sprinkles({
-				marginTop: '2x'
-			})}
-		/>
-	{/each}
+	<Container>
+		{#each articles as article, i}
+			<Card
+				{article}
+				depth={items[Math.floor(Math.random() * items.length)]}
+				class={i > 0
+					? sprinkles({
+							marginTop: '8x'
+					  })
+					: ''}
+			/>
+		{/each}
+	</Container>
 </main>

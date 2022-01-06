@@ -1,7 +1,5 @@
-import { style, createGlobalTheme } from '@vanilla-extract/css';
-import { vars as themeVars } from '$lib/styles/theme-default.css';
+import { style } from '@vanilla-extract/css';
 import { themeSwitcherPosition } from '$lib/styles/vars.css';
-import { padding } from 'polished';
 import { globalThemeVars } from '$lib/styles/styles.css';
 
 export const themeSwitcher = style({

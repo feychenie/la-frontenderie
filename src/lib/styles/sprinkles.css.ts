@@ -13,6 +13,10 @@ const responsiveProperties = defineProperties({
 		marginBottom: globalThemeVars.space,
 		marginLeft: globalThemeVars.space,
 		marginRight: globalThemeVars.space,
+		paddingTop: globalThemeVars.space,
+		paddingBottom: globalThemeVars.space,
+		paddingLeft: globalThemeVars.space,
+		paddingRight: globalThemeVars.space,
 		display: ['none', 'flex', 'grid', 'block'],
 		flexDirection: ['row', 'row-reverse', 'column'],
 		width: globalThemeVars.widths,
@@ -26,12 +30,17 @@ const responsiveProperties = defineProperties({
 			'space-around',
 			'space-between'
 		],
-		alignItems: ['stretch', 'flex-start', 'center', 'flex-end']
+		alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
+		position: ['relative', 'absolute', 'fixed', 'sticky'],
+		fontSize: globalThemeVars.fontSizes
 	},
 	shorthands: {
 		margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
 		marginX: ['marginLeft', 'marginRight'],
-		marginY: ['marginTop', 'marginBottom']
+		marginY: ['marginTop', 'marginBottom'],
+		padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+		paddingX: ['paddingLeft', 'paddingRight'],
+		paddingY: ['paddingTop', 'paddingBottom']
 	}
 });
 

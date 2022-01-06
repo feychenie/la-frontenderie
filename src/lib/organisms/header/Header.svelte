@@ -1,50 +1,54 @@
 <script>
-	import Container from '$lib/atoms/container/Container.svelte';
 	import { sprinkles } from '$lib/styles/sprinkles.css';
 	import Logo from '$lib/molecules/logo/Logo.svelte';
 	import { listUnstyled } from '$lib/styles/styles.css';
-	import { header } from '$lib/organisms/header/Header.css';
 	import Link from '$lib/atoms/link/Link.svelte';
+	import ThemeSwitcher from '$lib/molecules/themeSwitcher/ThemeSwitcher.svelte';
 </script>
 
 <!-- svelte-ignore component-name-lowercase -->
-<header class={header}>
-	<Container>
+<header
+	class={sprinkles({
+		paddingX: '5x',
+		paddingY: '5x'
+	})}
+>
+	<div
+		class={sprinkles({
+			display: 'flex',
+			alignItems: 'center',
+			width: 'full'
+		})}
+	>
+		<Logo />
 		<div
 			class={sprinkles({
-				display: 'flex',
-				alignItems: 'center',
-				width: 'full'
+				marginLeft: 'auto'
 			})}
 		>
-			<Logo />
 			<div
 				class={sprinkles({
-					marginLeft: 'auto'
+					display: 'flex',
+					alignItems: 'center'
 				})}
 			>
-				<div
-					class={sprinkles({
-						display: 'flex',
-						alignItems: 'center'
-					})}
-				>
-					<nav>
-						<ol
-							class="{listUnstyled} {sprinkles({
-								display: 'flex'
-							})}"
-						>
-							<li>
-								<Link href="/">Home</Link>
-							</li>
-							<li class={sprinkles({ marginLeft: '2x' })}>
-								<Link href="/about">About</Link>
-							</li>
-						</ol>
-					</nav>
-				</div>
+				<nav>
+					<ol
+						class="{listUnstyled} {sprinkles({
+							display: 'flex',
+							fontSize: 'fontSize1'
+						})}"
+					>
+						<li>
+							<Link href="/">Home</Link>
+						</li>
+						<li class={sprinkles({ marginLeft: '2x' })}>
+							<Link href="/about">About</Link>
+						</li>
+					</ol>
+				</nav>
+				<ThemeSwitcher class={sprinkles({ marginLeft: '2x' })} />
 			</div>
 		</div>
-	</Container>
+	</div>
 </header>

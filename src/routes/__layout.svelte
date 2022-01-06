@@ -27,17 +27,7 @@
 		<Container>Frontenderie !</Container>
 	</Header>
 
-	<Container>
-		<slot />
-	</Container>
-
+	<slot />
 	<Footer>
-		<div
-			class={sprinkles({
-				display: 'flex'
-			})}
-		>
-			<ThemeSwitcher class={sprinkles({ marginLeft: '2x' })} />
-		</div>
 	</Footer>
 </div>
