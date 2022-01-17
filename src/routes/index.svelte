@@ -1,20 +1,14 @@
 <script context="module">
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
 	export async function load({ fetch }) {
-		const response = await fetch(`index.json`);
-
-		if (response.ok) {
-			const { articles } = await response.json();
-
-			return {
-				props: {
-					articles
-				},
-				maxage: 0
-			};
-		}
+		const posts = await fetch('articles.json').then((res) => res.json());
 
 		return {
-			props: {}
+			props: {
+				posts
+			}
 		};
 	}
 </script>
@@ -22,9 +16,10 @@
 <script type="ts">
 	import { sprinkles } from '$lib/styles/sprinkles.css';
 	import Card from '$lib/molecules/card/Card.svelte';
-import Container from '$lib/atoms/container/Container.svelte';
-	export let articles = [];
-	const items = [2, 2, 2];
+	import Container from '$lib/atoms/container/Container.svelte';
+	import Link from '$lib/atoms/link/Link.svelte';
+
+	export let posts;
 </script>
 
 <svelte:head>
@@ -39,10 +34,9 @@ import Container from '$lib/atoms/container/Container.svelte';
 	})}
 >
 	<Container>
-		{#each articles as article, i}
+		{#each posts as post, i}
 			<Card
-				{article}
-				depth={items[Math.floor(Math.random() * items.length)]}
+				article={post}
 				class={i > 0
 					? sprinkles({
 							marginTop: '8x'

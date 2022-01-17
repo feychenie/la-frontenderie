@@ -14,7 +14,9 @@ export const bleedClass = style({
 		'&::before': {
 			content: '""',
 			position: 'absolute',
-			inset: '0'
+			inset: '0',
+			cursor: 'pointer',
+			zIndex: 20,
 		}
 	}
 });

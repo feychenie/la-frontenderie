@@ -4,6 +4,7 @@ export const container = style({
 	display: 'flex',
 	flexDirection: 'column',
 	maxWidth: '100%',
+	width: '100%',
 	'@media': {
 		'screen and (min-width:576px)': {
 			maxWidth: '540px'

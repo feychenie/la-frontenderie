@@ -20,7 +20,7 @@
 			width: 'full'
 		})}
 	>
-		<Logo />
+		<Link href="/"><Logo /></Link>
 		<div
 			class={sprinkles({
 				marginLeft: 'auto'

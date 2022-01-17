@@ -1,12 +1,9 @@
 import { style } from '@vanilla-extract/css';
 import { vars as themeVars } from '$lib/styles/theme-default.css';
-import { globalThemeVars } from '$lib/styles/styles.css';
-import { backgroundImages } from 'polished';
 
 export const footer = style({
 	position: 'relative',
-	marginTop: 'auto',
-	// paddingBlock: globalThemeVars.space['3x']
+	marginTop: 'auto'
 });
 
 export const pattern = style({
@@ -16,6 +13,7 @@ export const pattern = style({
 export const illustration = style({
 	display: 'block',
 	position: 'absolute',
+	zIndex: -1,
 	height: '20vh',
 	bottom: '100%',
 	right: '0',
@@ -24,7 +22,7 @@ export const illustration = style({
 		'&::before': {
 			content: '""',
 			position: 'absolute',
-			zIndex: '1',
+			zIndex: 1,
 			inset: '0',
 			backgroundImage:
 				'radial-gradient(ellipse at 50% 100%, rgba(16,12,45,0) 0%, rgba(16,12,45,1) 64%);'

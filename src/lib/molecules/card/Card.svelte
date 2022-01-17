@@ -1,4 +1,4 @@
-<script>
+<script type="ts">
 	import {
 		card,
 		cardHeaderLink,
@@ -17,25 +17,27 @@
 	import { sprinkles } from '$lib/styles/sprinkles.css';
 	import Link from '$lib/atoms/link/Link.svelte';
 	export let depth = 2;
-	export let article = {
-		title: '',
-		content: '',
-		author: {
-			name: '',
-			avatar: ''
-		},
-		publishedAt: ''
-	};
+
+	interface Article {
+		title: string;
+		description: string;
+		author: string;
+		date: string;
+		slug: string;
+		published: boolean;
+	}
+
+	export let article: Article;
 
 	const cardEchos = [cardEcho1, cardEcho2, cardEcho3, cardEcho4, cardEcho5];
 
 	const { class: classProps = '', ...restProps } = $$restProps;
-	const { title, summary, author, publishedAt, slug = 'n-o-p-e' } = article;
+	const { title, description, author, date, slug = 'n-o-p-e' } = article;
 </script>
 
 <section class="{card} {classProps}" {...restProps}>
 	<header class={cardHeader}>
-		<Link href="/posts/{slug}" bleed class={cardHeaderLink}>{title}</Link>
+		<Link href="/articles/{slug}" bleed class={cardHeaderLink}>{title}</Link>
 	</header>
 	<div
 		class={sprinkles({
@@ -49,21 +51,21 @@
 					marginTop: '2x'
 				})}"
 			>
-				<div>{summary}</div>
+				<div>{description}</div>
 			</div>
 			<footer
 				class="{cardFooter} {sprinkles({
 					marginTop: '2x'
 				})}"
 			>
-				<div>{author.name}</div>
+				<div>{author}</div>
 				<time
-					datetime={publishedAt}
+					datetime={date}
 					class={sprinkles({
 						marginLeft: 'auto'
 					})}
 				>
-					{new Date(publishedAt).toLocaleDateString('fr-FR')}
+					{new Date(date).toLocaleDateString('fr-FR')}
 				</time>
 			</footer>
 		</div>
