@@ -1,5 +1,5 @@
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
-import { globalThemeVars } from '$lib/styles/styles.css';
+import { vars } from '$lib/styles/vars.css';
 
 const responsiveProperties = defineProperties({
 	conditions: {
@@ -9,19 +9,20 @@ const responsiveProperties = defineProperties({
 	},
 	defaultCondition: 'mobile',
 	properties: {
-		marginTop: globalThemeVars.space,
-		marginBottom: globalThemeVars.space,
-		marginLeft: globalThemeVars.space,
-		marginRight: globalThemeVars.space,
-		paddingTop: globalThemeVars.space,
-		paddingBottom: globalThemeVars.space,
-		paddingLeft: globalThemeVars.space,
-		paddingRight: globalThemeVars.space,
+		marginTop: vars.spaces,
+		marginBottom: vars.spaces,
+		marginLeft: vars.spaces,
+		marginRight: vars.spaces,
+		paddingTop: vars.spaces,
+		paddingBottom: vars.spaces,
+		paddingLeft: vars.spaces,
+		paddingRight: vars.spaces,
 		display: ['none', 'flex', 'grid', 'block'],
 		flexDirection: ['row', 'row-reverse', 'column'],
-		width: globalThemeVars.widths,
-		gridTemplateColumns: globalThemeVars.gridCols,
-		gap: globalThemeVars.space,
+		width: vars.widths,
+		gridTemplateColumns: vars.gridCols,
+		gridColumn: vars.gridColSpan,
+		gap: vars.spaces,
 		justifyContent: [
 			'stretch',
 			'flex-start',
@@ -32,7 +33,7 @@ const responsiveProperties = defineProperties({
 		],
 		alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
 		position: ['relative', 'absolute', 'fixed', 'sticky'],
-		fontSize: globalThemeVars.fontSizes
+		fontSize: vars.fontSizes
 	},
 	shorthands: {
 		margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],

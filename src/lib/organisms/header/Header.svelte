@@ -4,6 +4,7 @@
 	import { listUnstyled } from '$lib/styles/styles.css';
 	import Link from '$lib/atoms/link/Link.svelte';
 	import ThemeSwitcher from '$lib/molecules/themeSwitcher/ThemeSwitcher.svelte';
+	import { stackInline, stacks } from '$lib/styles/stack.css';
 </script>
 
 <!-- svelte-ignore component-name-lowercase -->
@@ -34,7 +35,7 @@
 			>
 				<nav>
 					<ol
-						class="{listUnstyled} {sprinkles({
+						class="{listUnstyled} {stackInline} {stacks[3]} {sprinkles({
 							display: 'flex',
 							fontSize: 'fontSize1'
 						})}"
@@ -42,12 +43,24 @@
 						<li>
 							<Link href="/">Home</Link>
 						</li>
-						<li class={sprinkles({ marginLeft: '2x' })}>
+						<li>
+							<Link href="/">Articles</Link>
+						</li>
+						<li>
+							<Link href="/">Débuter</Link>
+						</li>
+						<li>
+							<Link href="/">Progresser</Link>
+						</li>
+						<li>
 							<Link href="/about">About</Link>
+						</li>
+						<li>
+							<Link href="/about">Glossaire</Link>
 						</li>
 					</ol>
 				</nav>
-				<ThemeSwitcher class={sprinkles({ marginLeft: '2x' })} />
+				<ThemeSwitcher class={sprinkles({ marginLeft: '6x' })} />
 			</div>
 		</div>
 	</div>

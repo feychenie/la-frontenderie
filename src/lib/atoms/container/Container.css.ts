@@ -11,6 +11,12 @@ export const container = style({
 		},
 		'screen and (min-width: 768px)': {
 			maxWidth: '720px'
+		},
+		'screen and (min-width: 992px)': {
+			maxWidth: '960px'
+		},
+		'screen and (min-width: 1200px)': {
+			maxWidth: '1140px'
 		}
 	}
 });
@@ -23,5 +29,5 @@ export const centered = style({
 export const skin = style({
 	backgroundImage: 'url(/pattern.svg)',
 	backgroundSize: '75px 75px',
-	backgroundRepeat: 'repeat',
+	backgroundRepeat: 'repeat'
 });

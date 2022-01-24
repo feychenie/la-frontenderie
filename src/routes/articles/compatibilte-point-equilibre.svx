@@ -1,10 +1,10 @@
 ---
-title: "Mon deuxieme post"
-description: "This blog post is not yet ready to be seen by the world"
+title: "Compatibilités navigateurs — le point d'équilibre"
+description: "On code pour qui là ?"
 author: "Julien Lopinto"
-date: "2021-05-10"
+date: "2022-01-18"
 published: true
-level: 4
+level: 2
 ---
 
 <script>

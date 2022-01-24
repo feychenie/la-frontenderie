@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { themeSwitcherPosition } from '$lib/styles/vars.css';
-import { globalThemeVars } from '$lib/styles/styles.css';
+import { vars } from '$lib/styles/vars.css';
+import { themeSwitcherPosition } from '$lib/styles/styles.css';
 
 export const themeSwitcher = style({
 	vars: {
@@ -17,7 +17,7 @@ export const icons = style({
 	overflow: 'hidden',
 	width: '2rem',
 	height: '2rem',
-	padding: globalThemeVars.space['1x']
+	padding: vars.spaces['1x']
 });
 
 export const icon = style({

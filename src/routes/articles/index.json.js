@@ -2,11 +2,11 @@ import { slugFromPath } from '$lib/util.js';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function get({ params }) {
+	// @ts-ignore
 	const modules = import.meta.glob('./*.{md,svx,svelte.md}');
 
 	const postPromises = [];
 	const limit = Number(params.limit ?? Infinity);
-
 	if (Number.isNaN(limit)) {
 		return {
 			status: 400

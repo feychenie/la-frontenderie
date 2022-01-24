@@ -1,0 +1,29 @@
+---
+title: "Quelques maux sur les CSS"
+description: "Parfois douloureux l'apprentissage des CSS est plus (ou moins grace a frontenderie) un long chemin. En voici les étapes. Ou en est-tu ?"
+author: "Julien Lopinto"
+date: "2022-01-11"
+published: true
+level: 2
+---
+
+<script>
+    import { stack, stacks } from '$lib/styles/stack.css';
+</script>
+
+## Les étapes d'évolutions d'un developpeur CSS
+
+1. Faire: atteindre un objectif quelque soit la solution mise en oeuvre.
+2. Faire "mieux": atteindre le meme objectif avec une révision des méthodes usités, plus succincte, plus claire, plus systématisé.
+3. Comprendre: qu'il y a X facons de réaliser un rendu, mais pas X facon de le faire _bien_.
+4. Eradiquer la complexité: séparation des roles, nommage (BEM), on respecte le **code**, systémiser.
+5. Documenter: ton prochain tu documentera.
+
+## définition d'un bonne classe
+
+- contient le minimum syndical, pas de shorthand abusif, on évalue correctement la strategie de défense
+- permet de rapidement définir son role: Positionnment, traitement du texte , habillage de la boite ?
+
+```html
+<div> du code </div>
+```

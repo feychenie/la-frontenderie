@@ -2,7 +2,7 @@
 	import { currentTheme } from '$lib/store.js';
 	import { assignInlineVars } from '@vanilla-extract/dynamic';
 	import { sprinkles } from '$lib/styles/sprinkles.css';
-	import { themeSwitcherPosition } from '$lib/styles/vars.css';
+	import { themeSwitcherPosition } from '$lib/styles/styles.css';
 	import { themeSwitcher, inner, icons, icon } from './ThemeSwitcher.css';
 
 	const { class: classProps, ...restProps } = $$restProps;

@@ -25,6 +25,7 @@
 		date: string;
 		slug: string;
 		published: boolean;
+		level: number;
 	}
 
 	export let article: Article;
@@ -32,7 +33,7 @@
 	const cardEchos = [cardEcho1, cardEcho2, cardEcho3, cardEcho4, cardEcho5];
 
 	const { class: classProps = '', ...restProps } = $$restProps;
-	const { title, description, author, date, slug = 'n-o-p-e' } = article;
+	const { title, description, author, date, slug = 'n-o-p-e', level = 0 } = article;
 </script>
 
 <section class="{card} {classProps}" {...restProps}>
@@ -41,7 +42,7 @@
 	</header>
 	<div
 		class={sprinkles({
-			marginTop: '0x',
+			marginTop: 'none',
 			position: 'relative'
 		})}
 	>
@@ -59,14 +60,17 @@
 				})}"
 			>
 				<div>{author}</div>
-				<time
-					datetime={date}
+				<div
 					class={sprinkles({
-						marginLeft: 'auto'
+						marginLeft: 'auto',
+						display: 'flex'
 					})}
 				>
-					{new Date(date).toLocaleDateString('fr-FR')}
-				</time>
+					<div>Level: {level}&nbsp;&mdash;&nbsp;</div>
+					<time datetime={date}>
+						{new Date(date).toLocaleDateString('fr-FR')}
+					</time>
+				</div>
 			</footer>
 		</div>
 		{#each Array(depth) as depth, i}

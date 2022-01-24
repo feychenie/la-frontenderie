@@ -1,0 +1,19 @@
+---
+title: "Choisis tes outils"
+description: "Dit papa y a quoi dans cette page web ?"
+author: "Julien Lopinto"
+date: "2022-01-11"
+published: true
+level: 2
+---
+
+
+- Source de vérité -> inspecteur
+
+## L'inspecteur
+
+1. DOM ( !== source )
+2. CSS ( CSSOM )
+3. Network
+4. Data
+5. debugeur

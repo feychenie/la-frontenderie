@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import '../webfonts.css';
 	import '$lib/styles/reset.css';
 	import '$lib/styles/styles.css';
 	import { themeClass } from '$lib/styles/theme-default.css';

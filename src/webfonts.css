@@ -1,0 +1,162 @@
+/* @font-face {
+  font-family: "Bitter";
+  src: local("Bitter Black"), local("Bitter-Black"),
+    url("/fonts/subset-Bitter-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bitter";
+  src: local("Bitter ExtraBold Italic"), local("Bitter-ExtraBoldItalic"),
+    url("/fonts/subset-Bitter-ExtraBoldItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bitter";
+  src: local("Bitter Black Italic"), local("Bitter-BlackItalic"),
+    url("/fonts/subset-Bitter-BlackItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+} */
+
+@font-face {
+    font-family: "Bitter";
+    src: local("Bitter Bold Italic"), local("Bitter-BoldItalic"),
+      url("/fonts/subset-Bitter-BoldItalic.woff2") format("woff2");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Bold"), local("Bitter-Bold"),
+      url("/fonts/subset-Bitter-Bold.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* @font-face {
+    font-family: "Bitter";
+    src: local("Bitter ExtraBold"), local("Bitter-ExtraBold"),
+      url("/fonts/subset-Bitter-ExtraBold.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  } */
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Italic"), local("Bitter-Italic"),
+      url("/fonts/subset-Bitter-Italic.woff2") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Medium"), local("Bitter-Medium"),
+      url("/fonts/subset-Bitter-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Medium Italic"), local("Bitter-MediumItalic"),
+      url("/fonts/subset-Bitter-MediumItalic.woff2") format("woff2");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  /* @font-face {
+    font-family: "Bitter";
+    src: local("Bitter SemiBold"), local("Bitter-SemiBold"),
+      url("/fonts/subset-Bitter-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  } */
+  
+  /* @font-face {
+    font-family: "Bitter";
+    src: local("Bitter ExtraLight"), local("Bitter-ExtraLight"),
+      url("/fonts/subset-Bitter-ExtraLight.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  } */
+  
+  /* @font-face {
+    font-family: "Bitter";
+    src: local("Bitter SemiBold Italic"), local("Bitter-SemiBoldItalic"),
+      url("/fonts/subset-Bitter-SemiBoldItalic.woff2") format("woff2");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  } */
+  
+  /* @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Light Italic"), local("Bitter-LightItalic"),
+      url("/fonts/subset-Bitter-LightItalic.woff2") format("woff2");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Light"), local("Bitter-Light"),
+      url("/fonts/subset-Bitter-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter ExtraLight Italic"), local("Bitter-ExtraLightItalic"),
+      url("/fonts/subset-Bitter-ExtraLightItalic.woff2") format("woff2");
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Thin"), local("Bitter-Thin"),
+      url("/fonts/subset-Bitter-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Thin Italic"), local("Bitter-ThinItalic"),
+      url("/fonts/subset-Bitter-ThinItalic.woff2") format("woff2");
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  } */
+  
+  @font-face {
+    font-family: "Bitter";
+    src: local("Bitter Regular"), local("Bitter-Regular"),
+      url("/fonts/subset-Bitter-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  

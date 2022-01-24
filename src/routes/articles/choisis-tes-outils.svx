@@ -1,8 +1,8 @@
 ---
-title: "Mon deuxieme post"
-description: "This blog post is not yet ready to be seen by the world"
+title: "Choisis-tes-outils"
+description: "Un tour d'horizon des outils des navigateurs et editeurs"
 author: "Julien Lopinto"
-date: "2021-05-10"
+date: "2022-01-18"
 published: true
 level: 4
 ---
